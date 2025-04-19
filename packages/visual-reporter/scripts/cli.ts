@@ -12,7 +12,6 @@ import { validateOutputJson } from './utils/validateOutput.js'
 import { copyDirectory } from './utils/fileHandling.js'
 
 async function main() {
-    //
     // Set some initial variables
     let filePath = getArgValue('--jsonOutput') ? resolve(process.cwd(), getArgValue('--jsonOutput')) : undefined
     let reportPath = getArgValue('--reportFolder') ? resolve(process.cwd(), getArgValue('--reportFolder')) : undefined
@@ -28,7 +27,6 @@ async function main() {
         console.log(CONFIG_HELPER_INTRO)
     }
 
-    //
     // Get the output.json file path
     if (!filePath) {
         const initialChoice = await select<{ method: 'explore' | 'type' }>({
@@ -74,7 +72,6 @@ async function main() {
     process.env.VISUAL_REPORT_OUTPUT_JSON_PATH = filePath
 
     if (!reportPath) {
-        //
         // Choose the report output folder
         const reportFolderChoice = await select<{ method: 'explore' | 'type' }>({
             message: 'Where do you want the Visual Report to be created?',
@@ -92,7 +89,6 @@ async function main() {
     const reporterPath = join(reportPath, 'report')
     process.env.VISUAL_REPORT_REPORTER_FOLDER = reporterPath
 
-    //
     // Check if the user wants to run in debug mode
     const runInDebugMode = logLevel === 'debug' || (!isCliMode && await confirm({
         message: 'Would you like to run in debug mode?',
@@ -103,7 +99,6 @@ async function main() {
     }
 
     if (!isLocalDev) {
-        //
         // Copy the report to the specified folder
         const copyReportSpinner = ora(
             `Copying report to ${reporterPath}...\n`
@@ -113,7 +108,7 @@ async function main() {
                 mkdirSync(reporterPath, { recursive: true })
             }
             copyDirectory(
-                join(visualReporterProjectRoot, 'build', 'client'),
+                join(visualReporterProjectRoot, 'dist', 'client'),
                 reporterPath
             )
             copyReportSpinner.succeed(
@@ -125,7 +120,6 @@ async function main() {
         }
     }
 
-    //
     // Generate the thumbnails
     const thumbnailSpinner = ora('Prepare report assets...\n').start()
     try {
@@ -142,7 +136,6 @@ async function main() {
     }
 
     if (!isCliMode) {
-        //
         // Check if the user wants to start the server and if so, start the server on the specified port
         const startServer = await confirm({
             message: 'Would you like to start the server to show the report?',

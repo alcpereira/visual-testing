@@ -90,7 +90,7 @@ https://github.com/user-attachments/assets/9cd2d0ce-bb19-4c5f-89c5-ea2f01d68fa1
 
 ### Deploy to GitHub Pages
 
-You can find a workflow [here](../../.github/workflows/deploy-visual-reporter.yml). Make sure you change the `GITHUB_PAGES` variable to the path of your reporter
+You can find a workflow [here](../../.github/workflows/deploy-visual-reporter.yml).
 
 
 ### The Visual Reporter

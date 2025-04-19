@@ -6,7 +6,7 @@ import sharp from 'sharp'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const demoFolderPath = join(__dirname, '..', 'demo')
-const baseDir = process.env.VISUAL_REPORT_LOCAL_DEV === 'true' ? 'public' : join('build', 'client')
+const baseDir = process.env.VISUAL_REPORT_LOCAL_DEV === 'true' ? 'public' : join('dist', 'client')
 const reportPath = join('static', 'report')
 const reporterBasePath = process.env.VISUAL_REPORT_REPORTER_FOLDER || join(__dirname, '..', baseDir)
 const DEBUG_MODE = process.env.VISUAL_REPORT_DEBUG_LEVEL === 'debug'

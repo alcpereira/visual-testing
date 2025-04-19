@@ -40,14 +40,12 @@ jobs:
         run: |
           pnpm build
           pnpm script:prepare.report
-        env:
-          GITHUB_PAGES: "/visual-testing/"
       - name: ⚙️ Setup Pages
         uses: actions/configure-pages@v5
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "packages/visual-reporter/build/client"
+          path: "packages/visual-reporter/dist/client"
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
